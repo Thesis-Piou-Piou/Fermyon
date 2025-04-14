@@ -1,19 +1,43 @@
 spin_manifest_version = 2
 
 [application]
-authors = ["Isabela-Mitac <mitac@student.chalmers.se>"]
-description = ""
-name = "hello-world"
+name = "fermyon"
 version = "0.1.0"
+authors = ["Agrima", "David", "Isabela"]
+description = ""
 
 [[trigger.http]]
 route = "/..."
-component = "hello-world"
+component = "basic-http"
 
-[component.hello-world]
-source = "target/hello-world.wasm"
-allowed_outbound_hosts = ["https://jsonplaceholder.typicode.com"]
-exclude_files = ["**/node_modules"]
-[component.hello-world.build]
-command = "npm run build"
-watch = ["src/**/*.ts", "package.json"]
+[component.basic-http]
+source = "basic-http/dist/basic-http.wasm"
+allowed_outbound_hosts = []
+
+[component.basic-http.build]
+command = "npm install && npm run build"
+workdir = "basic-http"
+
+[[trigger.http]]
+route = "/key-value"
+component = "key-value"
+
+[component.key-value]
+source = "key-value/dist/key-value.wasm"
+allowed_outbound_hosts = []
+
+[component.key-value.build]
+command = "npm install && npm run build"
+workdir = "key-value"
+
+[[trigger.http]]
+route = "/light-compute"
+component = "light-compute"
+
+[component.light-compute]
+source = "light-compute/dist/light-compute.wasm"
+allowed_outbound_hosts = []
+
+[component.light-compute.build]
+command = "npm install && npm run build"
+workdir = "light-compute"
