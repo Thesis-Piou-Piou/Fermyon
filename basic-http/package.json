@@ -18,7 +18,6 @@
   "dependencies": {
     "@spinframework/build-tools": "^1.0.1",
     "@spinframework/wasi-http-proxy": "^1.0.0",
-    "basic-http": "file:",
     "itty-router": "^5.0.18"
   }
 }
