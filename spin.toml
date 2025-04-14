@@ -7,7 +7,7 @@ authors = ["Agrima", "David", "Isabela"]
 description = ""
 
 [[trigger.http]]
-route = "/..."
+route = "/basic-http"
 component = "basic-http"
 
 [component.basic-http]
@@ -24,11 +24,29 @@ component = "key-value"
 
 [component.key-value]
 source = "key-value/dist/key-value.wasm"
-allowed_outbound_hosts = []
+exclude_files = ["**/node_modules"]
+key_value_stores = ["default"]
 
 [component.key-value.build]
-command = "npm install && npm run build"
+command =  ["npm install", "npm run build"]
 workdir = "key-value"
+watch = ["src/**/*.ts"]
+
+[variables]
+kv_explorer_user = { required = true }
+kv_explorer_password = { required = true }
+
+[[trigger.http]]
+component = "kv-explorer"
+route = "/internal/kv-explorer/..."
+
+[component.kv-explorer]
+source = { url = "https://github.com/fermyon/spin-kv-explorer/releases/download/v0.10.0/spin-kv-explorer.wasm", digest = "sha256:65bc286f8315746d1beecd2430e178f539fa487ebf6520099daae09a35dbce1d" }
+allowed_outbound_hosts = ["redis://*:*", "mysql://*:*", "postgres://*:*"]
+key_value_stores = ["default"]
+
+[component.kv-explorer.variables]
+kv_credentials = "{{ kv_explorer_user }}:{{ kv_explorer_password }}"
 
 [[trigger.http]]
 route = "/light-compute"
