@@ -4,3 +4,4 @@ dist
 target
 .spin/
 dist.js
+.env
