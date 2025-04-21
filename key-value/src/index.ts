@@ -20,6 +20,8 @@ function saveKeyList(store: any, keys: string[]) {
 
 // Route logic
 router.all("*", async (req: Request) => {
+  const start = performance.now();
+
   const store = Kv.openDefault();
   const url = new URL(req.url);
   const method = req.method;
@@ -92,8 +94,10 @@ router.all("*", async (req: Request) => {
       status = 405;
       body = "Method Not Allowed";
   }
-
-  return new Response(body, { status });
+  const executionDuration = performance.now() - start;
+  return new Response(
+    JSON.stringify({ status, body, execution: executionDuration })
+  );
 });
 
 //@ts-ignore

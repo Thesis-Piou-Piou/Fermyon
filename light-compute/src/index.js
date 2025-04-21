@@ -30,7 +30,7 @@ router
       const resultMatrix = multiplyMatrices(matrixA, matrixB);
       const executionDuration = performance.now() - start;
 
-      return new Response(JSON.stringify({ resultMatrix, executionDuration }), {
+      return new Response(JSON.stringify({ resultMatrix, execution: executionDuration }), {
         status: 200,
       });
     } catch (e) {
