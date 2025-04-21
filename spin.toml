@@ -59,3 +59,15 @@ allowed_outbound_hosts = []
 [component.light-compute.build]
 command = "npm install && npm run build"
 workdir = "light-compute"
+
+[[trigger.http]]
+route = "/heavy-compute"
+component = "heavy-compute"
+
+[component.heavy-compute]
+source = "heavy-compute/dist/heavy-compute.wasm"
+allowed_outbound_hosts = []
+
+[component.heavy-compute.build]
+command = "npm install && npm run build"
+workdir = "heavy-compute"
