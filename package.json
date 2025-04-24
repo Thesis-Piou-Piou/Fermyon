@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "@bytecodealliance/wizer-darwin-arm64": "^8.0.0",
-    "@fermyon/spin-sdk": "^3.2.0",
-    "itty-router": "^5.0.18"
-  }
-}

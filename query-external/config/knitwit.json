@@ -1,11 +1,14 @@
 {
-    "component": {
-      "id": "query-external",
-      "source": "target/query-external.wasm",
-      "allowed_outbound_hosts": ["https://api.open-meteo.com"],
-      "environment": {},
-      "http": {
-        "base": "/query-external"
-      }
+  "version": 1,
+  "project": {
+    "worlds": [
+      "spin-http"
+    ]
+  },
+  "packages": {
+    "@fermyon/spin-sdk": {
+      "witPath": "../../bin/wit",
+      "world": "spin-imports"
     }
-  }  
+  }
+}
