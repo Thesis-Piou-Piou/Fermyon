@@ -77,5 +77,9 @@ route = "/query-external"
 component = "query-external"
 
 [component.query-external]
-source = "query-external/target/query-external.wasm"
+source = "query-external/dist/query-external.wasm"
 allowed_outbound_hosts = ["https://api.open-meteo.com"]
+
+[component.query-external.build]
+command = "npm install && npm run build"
+workdir = "query-external"
