@@ -46,7 +46,7 @@ router.get("/basic-http", async () => {
 
   const body = JSON.stringify({
     countries: euCountries,
-    execution: execution.toFixed(6) + " ms"
+    execution: execution.toFixed(6)
   });
 
   return new Response(body, {
